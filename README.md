@@ -1,5 +1,17 @@
 # IGP
 
+## GitHub Workflow
+
+To ensure a smooth and organized process, please follow these guidelines:
+
+1. Clone the repository to your local machine.
+2. Create a new branch for the changes you are making, using the format `<your-name>/<feature-name>` as the branch name. ie `Sol/ReadMe-Setup`
+3. Make your changes and commit them to your branch.
+4. Push your branch to the remote repository.
+5. Open a pull request to merge your changes into the `main` branch.
+
+**IMPORTANT**: Please do not make direct changes to the `main` branch. All changes should be made in separate branches and reviewed through pull requests to maintain a clean and organized codebase.
+
 ## Code practice
 We won't be super strict about all the minutia, but please adhear to the general style of these. They are hear to help with readability and consistancy between developers.
 
