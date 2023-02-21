@@ -5,7 +5,7 @@
 To ensure a smooth and organized process, please follow these guidelines:
 
 1. Clone the repository to your local machine.
-2. Create a new branch for the changes you are making, using the format `<bugfix or feature>/<feature_name>` as the branch name. ie `feature/ReadMe_Setup`
+2. Create a new branch for the changes you are making, using the format `<bugfix or feature>/<feature-name>` as the branch name. ie `feature/ReadMe-Setup`
 3. Make your changes and commit them to your branch.
 4. Push your branch to the remote repository.
 5. Open a pull request to merge your changes into the `main` branch.
