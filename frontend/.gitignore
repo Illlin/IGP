@@ -24,4 +24,4 @@ yarn-error.log*
 package-lock.json
 /FlaskServer
 IBM_Watson_Hello_World_2.py
-README.md
+../README.md
