@@ -1,6 +1,13 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, render_template, send_from_directory
 
-app = Flask(__name__)
+build_dir = "../FrontEnd/build/"
+
+app = Flask(
+    __name__,
+    static_url_path="", 
+    template_folder=build_dir, 
+    static_folder=build_dir
+    )
 
 # Dummy Data
 formats = ["wav"]
@@ -34,11 +41,13 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in formats
 
-# Function for root URL
-@app.route("/")
-def hello():
-    return "Hello World!"
+
+# Server static site
+@app.route('/')
+def serve():
+    print("Hello")
+    return render_template("index.html")
+
 
 if __name__ == '__main__':
     app.run(debug=True)
-    print("Fish bish")
