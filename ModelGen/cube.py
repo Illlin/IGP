@@ -121,7 +121,7 @@ def generate_cube(points):
 
     return np.array(vertices), np.array(faces)
 
-def wav_to_mesh(wav, mesh):
+def wav_to_mesh(wav, mesh_name):
     num_points = 32
 
     # Generate Amplitude
@@ -140,7 +140,7 @@ def wav_to_mesh(wav, mesh):
             cube.vectors[i][j] = vertices[f[j],:]
 
     # Write the mesh to file "cube.stl"
-    cube.save(mesh)
+    cube.save(mesh_name)
 
 
 if __name__ == "__main__":
