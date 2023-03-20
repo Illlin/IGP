@@ -45,12 +45,9 @@ def get_emotion(filepath):
         text=text_transcript,
         features=Features(emotion=EmotionOptions(targets=text_transcript_words))).get_result()
 
-    raw_time_stamps = speech_recognition_results["results"][0]["alternatives"][0]["timestamps"]
-    time_stamps = []
-    for i in range(len(raw_time_stamps)):
-        time_stamps.append([response["emotion"]["targets"][i]["emotion"], raw_time_stamps[i][1], raw_time_stamps[i][2]])
-
-    return response["emotion"]["document"]["emotion"]
+    time_stamps = speech_recognition_results["results"][0]["alternatives"][0]["timestamps"]
+    
+    return response["emotion"]["document"]["emotion"], time_stamps
 
 if __name__ == "__main__":
     print(get_emotion("FlaskServer/test_files/test_happy.wav"))

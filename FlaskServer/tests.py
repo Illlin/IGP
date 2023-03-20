@@ -8,3 +8,4 @@ filename = "test_happy.wav"
 r = requests.post(url, files={"file": open(filepath+filename, "rb")})
 
 print(r.status_code)
+print(r.json())

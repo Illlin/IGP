@@ -1,5 +1,6 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from ibm_bridge import get_emotion
+from cube import wav_to_mesh
 
 build_dir = "../FrontEnd/build/"
 
@@ -12,9 +13,10 @@ app = Flask(
 
 # Dummy Data
 formats = ["wav"]
-dummy = {"file": "FrontEnd/src/Datastore/Happy V1.stl"}
-fail = dummy = {"file": ""}
-
+dummy = {"file": "FlaskServer/cach/model.stl"}
+fail = {"file": ""}
+save_loc = "cach/audio.wav"
+out_loc = "cach/model.stl"
 
 @app.route('/api/sculpt', methods=['POST'])
 def wav_to_model():
@@ -32,6 +34,9 @@ def wav_to_model():
     # All validations passed, proced
 
     print(type(file))
+    file.save(save_loc)
+    emotion, time_stamps = get_emotion(save_loc)
+    wav_to_mesh(save_loc, out_loc)
 
     # Process the data to make the model
     data = dummy

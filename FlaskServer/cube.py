@@ -1,11 +1,8 @@
 import numpy as np
 from scipy.io.wavfile import read
 from scipy.fft import fft
-import matplotlib.pyplot as plt
 
 from stl import mesh
-from mpl_toolkits import mplot3d
-from matplotlib import pyplot
 
 def scale_array(arr, upper=1, lower=0):
     max_val = np.max(arr)
@@ -122,7 +119,7 @@ def generate_cube(points):
     return np.array(vertices), np.array(faces)
 
 def wav_to_mesh(wav, mesh_name):
-    num_points = 128
+    num_points = 32
 
     # Generate Amplitude
     fs, amplitude = read(wav)
@@ -144,5 +141,5 @@ def wav_to_mesh(wav, mesh_name):
 
 
 if __name__ == "__main__":
-    wav_to_mesh("ModelGen/test_files/test_happy.wav", "cube.stl")
+    wav_to_mesh("FlaskServer/test_files/test_happy.wav", "cube.stl")
     print("fin")
