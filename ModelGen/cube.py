@@ -36,45 +36,77 @@ def sub_sample_rolling(all_samples, num_points):
 
 def generate_cube_vertices(n):
     vertices = []
+
+    # Bottom faces of the cube
+    vertices.append([0,0,0])
+    vertices.append([0,1,0])
+    vertices.append([1,0,0])
+    vertices.append([1,1,0])
+
+    # Top of the cube is an NxN
     for x in range(n):
         for y in range(n):
-            for z in range(n):
-                vertices.append((x, y, z))
+            vertices.append([x/(n-1),y/(n-1),1])
+
     return np.array(vertices)
 
+
 def generate_cube_faces(n):
-    faces = []
-    for x in range(n - 1):
-        for y in range(n - 1):
-            for z in range(n - 1):
-                # Generate the indices of the vertices for each face
-                v1 = x + y * n + z * n * n
-                v2 = v1 + 1
-                v3 = v1 + n
-                v4 = v3 + 1
-                v5 = v1 + n * n
-                v6 = v5 + 1
-                v7 = v5 + n
-                v8 = v7 + 1
-                # Generate the triangles for the top and bottom faces
-                faces.append((v1, v2, v4))
-                faces.append((v1, v4, v3))
-                faces.append((v5, v7, v6))
-                faces.append((v6, v7, v8))
-                # Generate the triangles for the front and back faces
-                faces.append((v1, v5, v6))
-                faces.append((v1, v6, v2))
-                faces.append((v3, v4, v8))
-                faces.append((v3, v8, v7))
-                # Generate the triangles for the left and right faces
-                faces.append((v1, v3, v7))
-                faces.append((v1, v7, v5))
-                faces.append((v2, v6, v8))
-                faces.append((v2, v8, v4))
+    # Bottom face is hard coded
+    faces = [[1,2,0], [1,3,2]]
+    for x in range(n-1):
+        for y in range(n-1):
+            v0 = y*n + 4 + x
+            v1 = y*n + 4 + x + n
+            v2 = y*n + 4 + x + 1
+            v3 = y*n + 4 + x + 1 + n
+
+            faces.append([v1, v2, v0])
+            faces.append([v1, v3, v2])
+
+    for i in range(n-1):
+        # Front
+        v0 = 0
+        v1 = 4 + n*i
+        v2 = 4 + n*(i+1)
+
+        faces.append([v1, v0, v2])
+        if i == n-2:
+            faces.append([v2, 0, 2])
+
+        # back
+        v0 = 3
+        v1 = 4 + (n-1) + n*i
+        v2 = 4 + (n-1) + n*(i+1)
+
+        faces.append([v1, v2, v0])
+        if i == 0:
+            faces.append([v1, 3, 1])
+
+        # Right
+        v0 = 2
+        v1 = 4 + n*(n-1) + i
+        v2 = 4 + n*(n-1) + i + 1 
+
+        faces.append([v1, v0, v2])
+        if i == n-2:
+            faces.append([v2, 2, 3])
+
+        # Left
+        v0 = 1
+        v1 = 4 + i
+        v2 = 4 + i + 1
+
+        faces.append([v1, v2, v0])
+        if i == 0:
+            faces.append([v1, 1, 0])
+
+
+    #return np.array([])
     return np.array(faces)
 
 if __name__ == "__main__":
-    n = 32
+    n = 3
     vertices = generate_cube_vertices(n)
     faces = generate_cube_faces(n)
     print("Vertices:", vertices)
