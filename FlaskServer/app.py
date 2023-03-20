@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
+from ibm_bridge import get_emotion
 
 build_dir = "../FrontEnd/build/"
 
@@ -29,6 +30,8 @@ def wav_to_model():
         return jsonify(fail), 400
 
     # All validations passed, proced
+
+    print(type(file))
 
     # Process the data to make the model
     data = dummy

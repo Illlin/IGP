@@ -122,7 +122,7 @@ def generate_cube(points):
     return np.array(vertices), np.array(faces)
 
 def wav_to_mesh(wav, mesh_name):
-    num_points = 32
+    num_points = 128
 
     # Generate Amplitude
     fs, amplitude = read(wav)
