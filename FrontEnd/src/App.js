@@ -1,9 +1,9 @@
 import React, {useState,} from 'react';
 import ReactDOM from 'react-dom';
 import {StlViewer} from "react-stl-viewer";
-import './App.css';
 import urlHappy from './Datastore/Happy V1.stl';
 import urlAngry from './Datastore/Angry V1.stl';
+import AudioComponent from './AudioComponent';
 
 function App() {
   return (
@@ -14,6 +14,7 @@ function App() {
             <h1>AI Audio Model Synthesiser</h1>
           </div>
         </header>
+        <AudioComponent/>
         <ModelViewer></ModelViewer>
       </div>    
     </body>
@@ -52,6 +53,9 @@ function ModelViewer() {
       <div>
         <StlViewerComponent url={url}/>  
         <button onClick={() => setUrl(urlSwitch(url))} >Click to Change Model</ button>
+        <button>
+          <a href={url} download>Download .STL</a>
+        </ button>
       </div>
     );
 }
