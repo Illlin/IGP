@@ -119,11 +119,12 @@ def generate_cube(points):
     return np.array(vertices), np.array(faces)
 
 def wav_to_mesh(wav, mesh_name):
-    num_points = 32
+    num_points = 128
 
     # Generate Amplitude
     fs, amplitude = read(wav)
-    amplitude = [sample[0] for sample in amplitude] # Force mono (could blend, but would likely have little effect)
+    if type(amplitude[0]) == list:
+        amplitude = [sample[0] for sample in amplitude] # Force mono (could blend, but would likely have little effect)
     freqencies = fft(amplitude)
 
     amplitude = sub_sample_point(amplitude, num_points)

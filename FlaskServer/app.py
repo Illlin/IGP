@@ -20,7 +20,10 @@ out_loc = "cach/model.stl"
 
 @app.route('/api/sculpt', methods=['POST'])
 def wav_to_model():
-    # Check if file present
+    print(dir(request))
+    print(request)
+    print(request.files)
+    
     if 'file' not in request.files:
         return jsonify(fail), 400
 
