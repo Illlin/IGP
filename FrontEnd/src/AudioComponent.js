@@ -47,7 +47,7 @@ export default class AudioComponent extends Component{
         .then(response => response.blob())
         .then(audioBlob => {
           // Append the Blob object to the FormData object
-          formData.append('file', audioBlob, 'test_happy.wav');
+          formData.append('file', audioBlob, 'audio.wav');
       
           // Send the POST request with the FormData object
           return fetch(apiUrl, {
