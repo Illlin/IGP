@@ -59,12 +59,14 @@ export default class AudioComponent extends Component{
           console.log(response.status);
           return response.json();
         })
-        .then(data => {
-          console.log(data);
+        .then(function (response) {
+            console.log("Responce Recieved")
+            this.setRequest("responseRecieved").bind(this);
         })
-        .catch(error => {
-          console.error(error);
-        });
+        .catch(function (error) {
+            const  x ="There was an error";
+            console.log(x)
+       });
     }
                
     render() {
