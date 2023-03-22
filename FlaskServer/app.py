@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from ibm_bridge import get_emotion
 from cube import wav_to_mesh
+import os
 
 build_dir = "../FrontEnd/build/"
 
@@ -13,17 +14,14 @@ app = Flask(
 
 # Dummy Data
 formats = ["wav"]
-dummy = {"file": "FlaskServer/cach/model.stl"}
+dummy = {"file": os.path.join("FlaskServer","cach","model.stl")}
 fail = {"file": ""}
-save_loc = "cach/audio.wav"
-out_loc = "cach/model.stl"
+
+save_loc = os.path.join("cache", "audio.wav")
+out_loc = os.path.join("cache", "model.stl")
 
 @app.route('/api/sculpt', methods=['POST'])
 def wav_to_model():
-    print(dir(request))
-    print(request)
-    print(request.files)
-    
     if 'file' not in request.files:
         return jsonify(fail), 400
 
