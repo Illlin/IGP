@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, request, render_template, send_from_directory
 from ibm_bridge import get_emotion
-from cube import wav_to_mesh
+from cube import emotion_cube
 import os
 
 build_dir = "../FrontEnd/build/"
@@ -37,7 +37,7 @@ def wav_to_model():
     print(type(file))
     file.save(save_loc)
     emotion, time_stamps = get_emotion(save_loc)
-    wav_to_mesh(save_loc, out_loc)
+    emotion_cube(save_loc, out_loc, emotion)
 
     # Process the data to make the model
     data = dummy
