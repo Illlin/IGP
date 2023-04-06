@@ -40,15 +40,24 @@ export default class AudioComponent extends Component{
 
     async postAudio(){
         const apiUrl = '/api/sculpt';
-        const audioData = this.state.audioSrc;
+        const audioUrl = this.state.audioSrc;
         const formData = new FormData();
-        formData.append("audio", audioData);
-
-        this.setRequest("requestSent")
-        axios.post(apiUrl, formData, {
-            headers: {
-              'Content-Type': 'multipart/form-data'
-            }
+        
+        fetch(audioUrl)
+        .then(response => response.blob())
+        .then(audioBlob => {
+          // Append the Blob object to the FormData object
+          formData.append('file', audioBlob, 'audio.wav');
+      
+          // Send the POST request with the FormData object
+          return fetch(apiUrl, {
+            method: 'POST',
+            body: formData
+          });
+        })
+        .then(response => {
+          console.log(response.status);
+          return response.json();
         })
         .then(function (response) {
             console.log("Responce Recieved")
