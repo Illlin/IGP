@@ -176,6 +176,7 @@ def generate_cube(
         ):
     depth = int(width*depth)
     width = int(width)
+    smooth = round(smooth)
     num_points = width
     n1 = width
     n2 = depth
