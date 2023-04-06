@@ -36,8 +36,12 @@ def wav_to_model():
 
     print(type(file))
     file.save(save_loc)
-    emotion, time_stamps = get_emotion(save_loc)
-    emotion_cube(save_loc, out_loc, emotion)
+    try:
+        emotion, time_stamps = get_emotion(save_loc)
+        emotion_cube(save_loc, out_loc, emotion)
+    except Exception as e:
+        # todo actual error handling
+        print("Unhandled Error:", e)
 
     # Process the data to make the model
     data = dummy
