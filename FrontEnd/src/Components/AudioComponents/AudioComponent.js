@@ -51,41 +51,38 @@ export default class AudioComponent extends Component{
  
     
 
-    async postAudio(){
+    async postAudio(audioUrl) {
         const modelCallback = (stl) => {this.props.modelCallback(stl)}
         modelCallback(placeHolderStl);
+              
         this.props.viewCallback();
-        const apiUrl = 'http://127.0.0.1:5000/api/sculpt';
-        const audioUrl = this.state.audioSrc;
+              
+        const apiUrl = '/api/sculpt';
         const formData = new FormData();
-        
-        fetch(audioUrl)
-        .then(response => response.blob())
-        .then(audioBlob => {
-          // Append the Blob object to the FormData object
-          formData.append('file', audioBlob, 'audio.wav');
+              
+        console.log(this.state.audioSrc);
       
-          // Send the POST request with the FormData object
-        return fetch(apiUrl, {
-            method: 'POST',
-            body: formData,
-            mode:"no-cors",}
-        );})
-
-        .then(response => {
-        console.log(response.status);
-          return response.json();
-        })
-        .then(function (response) {
-            console.log("Responce Recieved")
-            this.setRequest("responseRecieved").bind(this);
-            modelCallback(response);
-
-        })
-        .catch(function (error) {
+        try {
+            const response = await fetch(audioUrl);
+            const audioBlob = await response.blob();
+                    
+            // Append the Blob object to the FormData object
+            formData.append('file', audioBlob, 'audio.wav');
+            
+            // Send the POST request with the FormData object
+            const sculptResponse = await fetch(apiUrl, {
+                method: 'POST',
+                body: formData,
+            });
+      
+            const sculptData = await sculptResponse.json();
+            console.log("Response Received");
+            console.log(sculptData)
+            modelCallback(sculptData["file"]);
+        } catch (error) {
             console.log("There was an error");
             modelCallback(errorModel);        
-        });    
+        }   
     }
 
     render() {
@@ -119,8 +116,10 @@ export default class AudioComponent extends Component{
         );
     }
     handleCallbackSendAudio = (audioData) =>{
+        console.log("AUDIO DATA")
+        console.log(audioData)
         this.setAudioSrc(audioData);
-        this.postAudio();
+        this.postAudio(audioData);
     }    
 
     
