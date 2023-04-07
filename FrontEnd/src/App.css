@@ -1,71 +1,78 @@
+
 .App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 20vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+    text-align: center;
+    justify-content: end;
   }
-}
-
-h1{
-  color:magenta;
-}
-
-#STLViewer{
-  height: 50vh;;
-
-}
-
-.App {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-
-button {
-  border-radius: 10px;
-  padding: 2%;
-  margin: 5%;
-  transition: all .2s ease-in-out;
-  background-color: magenta;
-  font-size:x-large;
-  color: white;
-}
-
-a{  font-size:x-large;
-  color: white;
-  text-decoration: none;
-}
-
-button:hover{
-  font-style: bold;
-  transition: all .2s ease-in-out;
-  outline: invert;
-  transform: scale(1.5);
-background-color: rgba(255, 0, 255, 0.694);
-}
   
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.headerSection{
+  background-color:#1b1b1b;
+  width:100vw;
+
   }
-  to {
-    transform: rotate(360deg);
+    
+h1{
+    color:magenta;
+    margin: 0;
+    padding: 0;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
   }
-}
+  
+  #STLViewer{
+    height: 50vh;
+    width: 10vw;
+  
+  }
+  
+
+  .App {
+    background-color: #282c34;
+    height: 100vh;
+
+    
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+  }
+  
+  .App-link {
+    color: #61dafb;
+  }
+
+  #AudioComp{
+    padding: 0;
+    margin-top: 4rem;
+  }
+
+  
+
+  @media only screen and (min-width: 2000px){ 
+    #AudioComp{
+      scale: 4;
+      margin: 10rem;
+  }
+  }  
+  button {
+    border-radius: 10px;
+    height: 5rem;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    width:50vw;
+    transition: all .3s ease-in-out;
+    background-color: magenta;
+    font-size:x-large;
+    color: white;
+  }
+  
+ a {  font-size:x-large;
+    color: white;
+    text-decoration: none;
+  }
+  
+  button:hover{
+    font-style: bold;
+    transition: all .2s ease-in-out;
+    outline: invert;
+    transform: scale(1.5);
+  background-color: rgba(255, 0, 255, 0.694);
+  }
