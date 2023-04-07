@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request, render_template, send_from_directory
+from flask import Flask, jsonify, request, render_template, send_file
 from ibm_bridge import get_emotion
 from cube import emotion_cube
 import os
@@ -14,11 +14,17 @@ app = Flask(
 
 # Dummy Data
 formats = ["wav"]
-dummy = {"file": os.path.join("FlaskServer","cach","model.stl")}
+uri = "/cache/model.stl"
+dummy = {"file": uri}
 fail = {"file": ""}
 
 save_loc = os.path.join("cache", "audio.wav")
 out_loc = os.path.join("cache", "model.stl")
+
+@app.route('/cache/model.stl', methods=["GET"])
+def send_model():
+    return send_file("cache/model.stl", as_attachment=True)
+    
 
 @app.route('/api/sculpt', methods=['POST'])
 def wav_to_model():
