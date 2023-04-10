@@ -4,29 +4,17 @@ import errorModel from '../../Datastore/error.stl'
 import placeHolderStl from '../../Datastore/WaitingForModel.stl'
 
 export default class AudioComponent extends Component{  
+   componentDidMount() {
    
-    constructor(props) {
-        super(props)
-        this.state = {
-            audioSrc: null,
-        }
-    }
-
-    componentDidMount() {
     }   
 
 
-    setAudioSrc(src){
-        this.setState({
-            audioSrc:src
-        })
-    }
+
 
 
 
     openFileExplorer = async () => {
         // Open file exp
-        console.log(this.state)
         const pickerProps = {
             types: [{
                 description: "Audio",
@@ -40,8 +28,15 @@ export default class AudioComponent extends Component{
         const file = await fileHandle.getFile();
     
         if (file.type==="audio/wav"){
-            this.setAudioSrc(file.text);
-            this.postAudio();
+            file.arrayBuffer().then((arrayBuffer) => {
+
+                const blob = new Blob([new Uint8Array(arrayBuffer)], {type: file.type });
+                
+                this.postAudio(window.URL.createObjectURL(blob));
+
+            }
+            );
+    
         }
         else{
             alert("Invalid file - only .wav accepted")
@@ -60,12 +55,12 @@ export default class AudioComponent extends Component{
         const apiUrl = '/api/sculpt';
         const formData = new FormData();
               
-        console.log(this.state.audioSrc);
       
         try {
             const response = await fetch(audioUrl);
             const audioBlob = await response.blob();
-                    
+            console.log("AUDIO DATA");
+            console.log(audioBlob);
             // Append the Blob object to the FormData object
             formData.append('file', audioBlob, 'audio.wav');
             
@@ -94,19 +89,39 @@ export default class AudioComponent extends Component{
              <div className="headerSection">
                  <h1>AI Sound Sculpture Generator</h1>
             </div>
-            
+            <div className="text-box">
+                <p>
+                    This AI will allow you to record a 30 second description of a scene,
+                    person, object. We will use the waveform image of the recording as the basis for the model
+                    of our sculpture before using Watson Tone Analyser to analyse the voice recording the output of 
+                    that analysis will provide an extra dimention to the sculpture. 
+                </p>
+            </div>
+
+
             <div id="primaryAudioContainer">
                 <AudioRecorder 
                     id="audioRecorderComponent" 
                     parentCallback={this.handleCallbackSendAudio} 
                 />
 
-            <button id="uploadFileButton" onClick={this.openFileExplorer}>
+            <button className="main-page-button" id="uploadFileButton" onClick={this.openFileExplorer}>
                 Chooose a file to upload
             </button>                         
-                
+            <p>File types accepted: .WAV</p>    
             </div>
             
+
+            
+            <div className="text-box" id="terms-and-conditions-container">
+                <h2>Terms and Conditions</h2>
+                <p>
+                    psum dolor sit amet, consectetur adipiscing elit. Fusce iaculis enim
+                    nisl, eu ultricies nisl condimentum sed. Aenean et pulvinar mi.
+                    Nunc consequat congue nisi non placerat. Quisque tincidunt, mi ut
+                    imperdiet vulputate, nisi risus ullamcorper eros
+                </p>
+            </div>
 
             </div>
         
@@ -116,18 +131,7 @@ export default class AudioComponent extends Component{
         );
     }
     handleCallbackSendAudio = (audioData) =>{
-        console.log("AUDIO DATA")
-        console.log(audioData)
-        this.setAudioSrc(audioData);
+
         this.postAudio(audioData);
     }    
-
-    
-
-//    handleCallbackIsRecording = () => {
-//        this.setState({recorderStatus:"audioRecording"})
-//    }
-//    handleCallbackIsError = () => {
-//        this.setState({recorderStatus:"audioError"})
-//    }
 }

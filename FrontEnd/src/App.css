@@ -1,78 +1,92 @@
+* {
+  --header-color:#000000;
+  --main-bg-color: #a4dbe8;
+  --main-accent-color: #006699;
+  --main-text-color: #dfdfdf;
+  --secondary-text-color:#000000;
+  --hover-color: #55c1f7;
+  transition: all .3s ease-in-out;
+}
 
-.App {
-    text-align: center;
-    justify-content: end;
-  }
+.App-body {
+  background-color: var(--main-bg-color);
+  text-align: center;
+  min-height: 100vh;
+}
   
-.headerSection{
-  background-color:#1b1b1b;
-  width:100vw;
+.headerSection {
+  background-color:var(--header-color);
+}
 
-  }
-    
-h1{
-    color:magenta;
-    margin: 0;
-    padding: 0;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-  }
-  
-  #STLViewer{
-    height: 50vh;
-    width: 10vw;
-  
-  }
-  
+h1 {
+  font-size: 2.5rem;
+  color:var(--main-text-color);
+  margin: 0;
+  padding: 0;
+  padding-top: 5vh;
+  padding-bottom: 5vh;
+}
 
-  .App {
-    background-color: #282c34;
-    height: 100vh;
-
-    
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-  }
+button {
+  border-radius: 10px;
+  height: 5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  width:40vw;
+  background-color: var(--main-accent-color);
+  font-size:x-large;
+  color: var(--main-text-color);
+}
   
-  .App-link {
-    color: #61dafb;
-  }
+a {
+  color: var(--main-text-color);
+  text-decoration: none;
+}
 
-  #AudioComp{
-    padding: 0;
-    margin-top: 4rem;
-  }
+button:hover {
+  color: var(--secondary-text-color);
+  font-style: bold;
+  outline: invert;
+  transform: scale(1.1);
+  background-color: var(--hover-color)
+}
 
-  
+canvas {  
+  padding:0%;
+  margin: 0%;
+}
 
-  @media only screen and (min-width: 2000px){ 
-    #AudioComp{
-      scale: 4;
-      margin: 10rem;
-  }
-  }  
-  button {
-    border-radius: 10px;
-    height: 5rem;
-    margin-top: 1rem;
-    margin-bottom: 1rem;
-    width:50vw;
-    transition: all .3s ease-in-out;
-    background-color: magenta;
-    font-size:x-large;
-    color: white;
-  }
+#download-button {
+  position: fixed;
+  bottom: 0;
+  left: 30vw;
+}
   
- a {  font-size:x-large;
-    color: white;
-    text-decoration: none;
-  }
-  
-  button:hover{
-    font-style: bold;
-    transition: all .2s ease-in-out;
-    outline: invert;
-    transform: scale(1.5);
-  background-color: rgba(255, 0, 255, 0.694);
-  }
+#STLViewer {
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
+
+h2{
+  font-size: .7;
+  color: colorm;
+}
+
+#terms-and-conditions-container{
+  color:  -mix(in hsl longer hue, var(--main-accent-color) 80%, rgb(100, 95, 95));
+  font-size: 0.8rem;  
+}
+
+.text-box {
+  padding-left: 10vw;
+  padding-right: 10vw;
+}
+
+p {
+  font-size: 1.2rem;
+  margin: 0;
+  padding: 1rem;
+  color: var(--secondary-text-color);
+}

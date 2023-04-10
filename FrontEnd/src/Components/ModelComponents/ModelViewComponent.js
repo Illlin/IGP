@@ -11,11 +11,11 @@ export class ModelViewComponent extends Component {
 
     const modelStyle = {
       width: '100vw',
-      height: '60vh',
+      height: '100vh',
     };
 
     const modelProps={
-      color:'white'
+      color:'#006699'
     }
     
     return (
@@ -42,9 +42,10 @@ export class ModelViewComponent extends Component {
             url={this.props.url}
             />
 
-          <button >
-            <a href={this.props.url} onClick = {()=>this.props.viewCallback()}>Download</a>
-          </button>  
+      <a href={this.props.url} onClick = {()=>this.props.viewCallback()}>
+        <button id="download-button">
+          Download .STL Model
+        </button> </a> 
       </div>
       </div>
       }
