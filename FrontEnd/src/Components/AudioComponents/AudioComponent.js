@@ -112,16 +112,7 @@ export default class AudioComponent extends Component{
             </div>
             
 
-            
-            <div className="text-box" id="terms-and-conditions-container">
-                <h2>Terms and Conditions</h2>
-                <p>
-                    psum dolor sit amet, consectetur adipiscing elit. Fusce iaculis enim
-                    nisl, eu ultricies nisl condimentum sed. Aenean et pulvinar mi.
-                    Nunc consequat congue nisi non placerat. Quisque tincidunt, mi ut
-                    imperdiet vulputate, nisi risus ullamcorper eros
-                </p>
-            </div>
+           
 
             </div>
         
