@@ -110,10 +110,6 @@ export default class AudioComponent extends Component{
             </button>                         
             <p>File types accepted: .WAV</p>    
             </div>
-            
-
-           
-
             </div>
         
         }
