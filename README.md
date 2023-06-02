@@ -1,5 +1,30 @@
 # IGP
 
+
+# Instalation
+
+
+## Running the application
+Locate the latest build at: https://github.com/Illlin/IGP/releases/tag/igp
+
+download AudioSculper.zip and unzip, add your env file and run the exe. Windows only
+
+## Building the application
+
+1. Clone the repo to a local directory
+2. Install python dependencies
+```
+pip install ibm_watson Flask scipy numpy numpy-stl
+```
+3. Navigate to `FrontEnd`  and run:
+4. npm install
+5. npm run build
+6. Navigate to `FlaskServer` and run app.py
+
+
+
+# Dev instructions
+
 ## GitHub Workflow
 
 To ensure a smooth and organized process, please follow these guidelines:
